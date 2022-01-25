@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple Linear Regression Minimal &#8212; Machine Learning for Absolute Beginners</title>
+    <title>Multiple Linear Regression &#8212; Machine Learning for Absolute Beginners</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,6 +51,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Simple Linear Regression" href="SLR.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -94,7 +95,7 @@
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="SLR-Min.html">
    Simple Linear Regression Minimal
@@ -105,8 +106,8 @@
    Simple Linear Regression
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLR.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Multiple Linear Regression
   </a>
  </li>
@@ -151,7 +152,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/SimpleLinearRegression-Min.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/MLR.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -171,7 +172,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FSimpleLinearRegression-Min.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FMLR.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -192,7 +193,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/SimpleLinearRegression-Min.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/MLR.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -215,28 +216,28 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#import-libraries">
-   1. Import Libraries
+  <a class="reference internal nav-link" href="#load-libraries">
+   1. Load Libraries
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-dataset">
-   2. Load Dataset
+  <a class="reference internal nav-link" href="#load-and-verify-data">
+   2. Load and Verify Data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#run-simple-linear-regression">
-   3. Run Simple Linear Regression
+  <a class="reference internal nav-link" href="#run-multiple-linear-regression">
+   3. Run Multiple Linear Regression
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#review-results-and-evaluate-model">
-   4. Review Results and Evaluate Model
+  <a class="reference internal nav-link" href="#evaluate-model">
+   4. Evaluate Model
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#generate-predictions">
-   4. Generate Predictions
+  <a class="reference internal nav-link" href="#predictions">
+   Predictions
   </a>
  </li>
 </ul>
@@ -250,34 +251,25 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="simple-linear-regression-minimal">
-<h1>Simple Linear Regression Minimal<a class="headerlink" href="#simple-linear-regression-minimal" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="import-libraries">
-<h2>1. Import Libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">¶</a></h2>
+  <div class="tex2jax_ignore mathjax_ignore section" id="multiple-linear-regression">
+<h1>Multiple Linear Regression<a class="headerlink" href="#multiple-linear-regression" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="load-libraries">
+<h2>1. Load Libraries<a class="headerlink" href="#load-libraries" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="load-dataset">
-<h2>2. Load Dataset<a class="headerlink" href="#load-dataset" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="load-and-verify-data">
+<h2>2. Load and Verify Data<a class="headerlink" href="#load-and-verify-data" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load dataset and create dataframe</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/edincome.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/academicperformance.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -300,56 +292,74 @@
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Education</th>
+      <th>GPA</th>
       <th>Income</th>
+      <th>Sleep</th>
+      <th>Time</th>
+      <th>Grade</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>10.0</td>
-      <td>32.1</td>
+      <td>2.9</td>
+      <td>82461</td>
+      <td>6.5</td>
+      <td>47</td>
+      <td>77</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>10.4</td>
-      <td>36.5</td>
+      <td>3.7</td>
+      <td>61113</td>
+      <td>6.2</td>
+      <td>47</td>
+      <td>94</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>10.7</td>
-      <td>23.9</td>
+      <td>2.8</td>
+      <td>63632</td>
+      <td>6.2</td>
+      <td>39</td>
+      <td>69</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>11.1</td>
-      <td>52.3</td>
+      <td>2.0</td>
+      <td>66854</td>
+      <td>7.2</td>
+      <td>49</td>
+      <td>81</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>11.4</td>
-      <td>30.2</td>
+      <td>2.8</td>
+      <td>82721</td>
+      <td>5.5</td>
+      <td>49</td>
+      <td>78</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
 </div>
-<div class="section" id="run-simple-linear-regression">
-<h2>3. Run Simple Linear Regression<a class="headerlink" href="#run-simple-linear-regression" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="run-multiple-linear-regression">
+<h2>3. Run Multiple Linear Regression<a class="headerlink" href="#run-multiple-linear-regression" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slr</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s1">&#39;Income ~ Education&#39;</span><span class="p">,</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mlr</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s1">&#39;Grade ~ GPA + Sleep + Time&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="review-results-and-evaluate-model">
-<h2>4. Review Results and Evaluate Model<a class="headerlink" href="#review-results-and-evaluate-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="evaluate-model">
+<h2>4. Evaluate Model<a class="headerlink" href="#evaluate-model" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slr</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mlr</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -357,31 +367,31 @@
 <div class="output text_html"><table class="simpletable">
 <caption>OLS Regression Results</caption>
 <tr>
-  <th>Dep. Variable:</th>         <td>Income</td>      <th>  R-squared:         </th> <td>   0.878</td>
+  <th>Dep. Variable:</th>          <td>Grade</td>      <th>  R-squared:         </th> <td>   0.891</td> 
 </tr>
 <tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.875</td>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.891</td> 
 </tr>
 <tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   238.4</td>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   5653.</td> 
 </tr>
 <tr>
-  <th>Date:</th>             <td>Mon, 24 Jan 2022</td> <th>  Prob (F-statistic):</th> <td>1.17e-16</td>
+  <th>Date:</th>             <td>Mon, 24 Jan 2022</td> <th>  Prob (F-statistic):</th>  <td>  0.00</td>  
 </tr>
 <tr>
-  <th>Time:</th>                 <td>23:03:30</td>     <th>  Log-Likelihood:    </th> <td> -119.61</td>
+  <th>Time:</th>                 <td>23:05:00</td>     <th>  Log-Likelihood:    </th> <td> -6191.4</td> 
 </tr>
 <tr>
-  <th>No. Observations:</th>      <td>    35</td>      <th>  AIC:               </th> <td>   243.2</td>
+  <th>No. Observations:</th>      <td>  2077</td>      <th>  AIC:               </th> <td>1.239e+04</td>
 </tr>
 <tr>
-  <th>Df Residuals:</th>          <td>    33</td>      <th>  BIC:               </th> <td>   246.3</td>
+  <th>Df Residuals:</th>          <td>  2073</td>      <th>  BIC:               </th> <td>1.241e+04</td>
 </tr>
 <tr>
-  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
+  <th>Df Model:</th>              <td>     3</td>      <th>                     </th>     <td> </td>    
 </tr>
 <tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>    
 </tr>
 </table>
 <table class="simpletable">
@@ -389,42 +399,49 @@
       <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>Intercept</th> <td>  -23.1764</td> <td>    5.918</td> <td>   -3.917</td> <td> 0.000</td> <td>  -35.216</td> <td>  -11.137</td>
+  <th>Intercept</th> <td>  -39.7098</td> <td>    0.879</td> <td>  -45.179</td> <td> 0.000</td> <td>  -41.434</td> <td>  -37.986</td>
 </tr>
 <tr>
-  <th>Education</th> <td>    5.5742</td> <td>    0.361</td> <td>   15.440</td> <td> 0.000</td> <td>    4.840</td> <td>    6.309</td>
+  <th>GPA</th>       <td>    9.0992</td> <td>    0.136</td> <td>   67.065</td> <td> 0.000</td> <td>    8.833</td> <td>    9.365</td>
+</tr>
+<tr>
+  <th>Sleep</th>     <td>    7.2070</td> <td>    0.104</td> <td>   69.500</td> <td> 0.000</td> <td>    7.004</td> <td>    7.410</td>
+</tr>
+<tr>
+  <th>Time</th>      <td>    1.0580</td> <td>    0.011</td> <td>   95.102</td> <td> 0.000</td> <td>    1.036</td> <td>    1.080</td>
 </tr>
 </table>
 <table class="simpletable">
 <tr>
-  <th>Omnibus:</th>       <td> 2.854</td> <th>  Durbin-Watson:     </th> <td>   2.535</td>
+  <th>Omnibus:</th>       <td> 1.358</td> <th>  Durbin-Watson:     </th> <td>   1.941</td>
 </tr>
 <tr>
-  <th>Prob(Omnibus):</th> <td> 0.240</td> <th>  Jarque-Bera (JB):  </th> <td>   1.726</td>
+  <th>Prob(Omnibus):</th> <td> 0.507</td> <th>  Jarque-Bera (JB):  </th> <td>   1.305</td>
 </tr>
 <tr>
-  <th>Skew:</th>          <td> 0.502</td> <th>  Prob(JB):          </th> <td>   0.422</td>
+  <th>Skew:</th>          <td>-0.014</td> <th>  Prob(JB):          </th> <td>   0.521</td>
 </tr>
 <tr>
-  <th>Kurtosis:</th>      <td> 3.420</td> <th>  Cond. No.          </th> <td>    75.8</td>
+  <th>Kurtosis:</th>      <td> 3.120</td> <th>  Cond. No.          </th> <td>    344.</td>
 </tr>
 </table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
 </div>
 </div>
-<div class="section" id="generate-predictions">
-<h2>4. Generate Predictions<a class="headerlink" href="#generate-predictions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="predictions">
+<h2>Predictions<a class="headerlink" href="#predictions" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># predict new points</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Education&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">18</span><span class="p">]}</span>
-<span class="n">df_predict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;GPA&#39;</span><span class="p">:[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">],</span>
+        <span class="s1">&#39;Sleep&#39;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+        <span class="s1">&#39;Time&#39;</span><span class="p">:[</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">60</span><span class="p">]}</span>
+<span class="n">df_predict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_predict</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">slr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_predict</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_predict</span><span class="p">[</span><span class="s1">&#39;Grade&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mlr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_predict</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -454,25 +471,75 @@
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Education</th>
-      <th>Income</th>
+      <th>GPA</th>
+      <th>Sleep</th>
+      <th>Time</th>
+      <th>Grade</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>12</td>
-      <td>43.7</td>
+      <td>3.0</td>
+      <td>5</td>
+      <td>30</td>
+      <td>55.4</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>16</td>
-      <td>66.0</td>
+      <td>3.0</td>
+      <td>6</td>
+      <td>30</td>
+      <td>62.6</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>18</td>
-      <td>77.2</td>
+      <td>3.0</td>
+      <td>7</td>
+      <td>30</td>
+      <td>69.8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.0</td>
+      <td>6</td>
+      <td>30</td>
+      <td>53.5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.0</td>
+      <td>6</td>
+      <td>30</td>
+      <td>62.6</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4.0</td>
+      <td>6</td>
+      <td>30</td>
+      <td>71.7</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2.5</td>
+      <td>5</td>
+      <td>40</td>
+      <td>61.4</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2.5</td>
+      <td>5</td>
+      <td>50</td>
+      <td>72.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2.5</td>
+      <td>5</td>
+      <td>60</td>
+      <td>82.6</td>
     </tr>
   </tbody>
 </table>
@@ -505,7 +572,14 @@
               
         
             <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="SLR.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Simple Linear Regression</p>
+        </div>
+    </a>
 </div>
         
         </div>
