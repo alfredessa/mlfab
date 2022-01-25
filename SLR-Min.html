@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple Linear Regression Minimal &#8212; Machine Learning for Absolute Beginners</title>
+    <title>SLR - Minimal &#8212; Machine Learning for Absolute Beginners</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -99,7 +99,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Simple Linear Regression Minimal
+   SLR - Minimal
   </a>
  </li>
  <li class="toctree-l1">
@@ -211,39 +211,6 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#import-libraries">
-   1. Import Libraries
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-dataset">
-   2. Load Dataset
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#run-simple-linear-regression">
-   3. Run Simple Linear Regression
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#review-results-and-evaluate-model">
-   4. Review Results and Evaluate Model
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#generate-predictions">
-   4. Generate Predictions
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -252,47 +219,23 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="simple-linear-regression-minimal">
-<h1>Simple Linear Regression Minimal<a class="headerlink" href="#simple-linear-regression-minimal" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="import-libraries">
-<h2>1. Import Libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">¶</a></h2>
+  <div class="tex2jax_ignore mathjax_ignore section" id="slr-minimal">
+<h1>SLR - Minimal<a class="headerlink" href="#slr-minimal" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
 <span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="load-dataset">
-<h2>2. Load Dataset<a class="headerlink" href="#load-dataset" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load dataset and create dataframe</span>
+
+<span class="c1"># load dataset and create dataframe</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/edincome.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="run-simple-linear-regression">
-<h2>3. Run Simple Linear Regression<a class="headerlink" href="#run-simple-linear-regression" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slr</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s1">&#39;Income ~ Education&#39;</span><span class="p">,</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="review-results-and-evaluate-model">
-<h2>4. Review Results and Evaluate Model<a class="headerlink" href="#review-results-and-evaluate-model" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slr</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+
+
+<span class="c1"># run regression</span>
+<span class="n">slr</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s1">&#39;Income ~ Education&#39;</span><span class="p">,</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># print results</span>
+<span class="n">slr</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -309,10 +252,10 @@
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   238.4</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Mon, 24 Jan 2022</td> <th>  Prob (F-statistic):</th> <td>1.17e-16</td>
+  <th>Date:</th>             <td>Tue, 25 Jan 2022</td> <th>  Prob (F-statistic):</th> <td>1.17e-16</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>23:05:07</td>     <th>  Log-Likelihood:    </th> <td> -119.61</td>
+  <th>Time:</th>                 <td>07:01:54</td>     <th>  Log-Likelihood:    </th> <td> -119.61</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>    35</td>      <th>  AIC:               </th> <td>   243.2</td>
@@ -353,28 +296,14 @@
 </tr>
 </table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
 </div>
-</div>
-<div class="section" id="generate-predictions">
-<h2>4. Generate Predictions<a class="headerlink" href="#generate-predictions" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># predict new points</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Education&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">18</span><span class="p">]}</span>
 <span class="n">df_predict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_predict</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">slr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_predict</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_predict</span>
+
+<span class="n">df_predict</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">slr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_predict</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_predict</span>
 </pre></div>
 </div>
 </div>
@@ -420,7 +349,6 @@
   </tbody>
 </table>
 </div></div></div>
-</div>
 </div>
 </div>
 
